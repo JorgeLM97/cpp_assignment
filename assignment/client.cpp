@@ -12,17 +12,17 @@ using namespace std;
 
 
 //Function returns a pointer to a static array with 10 numbers randomly generated using rand(), with a range of rngRange beginning at rngStart
-int * RNG_array (int rngRange, int rngStart){
+int * rngArray (int rngRange, int rngStart){
 
-    static int rngArray [10];
+    static int generatedArray [10];
 
     srand(time(NULL));
 
     for (int i = 0; i != 10; i++){
-            rngArray[i] = rand() % rngRange + rngStart;
+            generatedArray[i] = rand() % rngRange + rngStart;
             // printf("%d ", rngArray[i]); //print the generated array
         }
-    return rngArray;
+    return generatedArray;
 
 }
 
@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
     }
     
     // generate the random array
-    rnumber = RNG_array(20, 1);
+    rnumber = rngArray(20, 1);
 
     for (int i = 0; i != 10; i++)
         printf("%d ", rnumber[i]);  //print unsorted array

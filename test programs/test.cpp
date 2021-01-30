@@ -20,24 +20,35 @@ int * RNG_array (int rngRange, int rngStart){
 
 }
 
+void factorialCheck ( int factorialNumber) {
+    unsigned long long factorialResult = 1;
+    for(int i = 1; i <= factorialNumber; i++){
+        factorialResult *= i;
+    }
+
+    if (factorialResult < 100000000000)
+        printf("log: ");
+    printf("%llu \n", factorialResult);
+}
+
 
 int main ()
 {
     int *rnumber, rint;
     rnumber = RNG_array(20, 1);
 
-    for (int i = 0; i != 10; i++)
-        printf("%d ", rnumber[i]);
-        
-    puts ("");
-
     sort(rnumber, rnumber + 10);
-
     for (int i = 0; i != 10; i++)
         printf("%d ", rnumber[i]);
+    puts ("");
+
+    for (int i = 0; i != 10; i++){
+        printf("%d: ", rnumber[i]);
+        factorialCheck(rnumber[i]);
+    }
 
     puts ("");
-    
+
     return 0;
 
 }
