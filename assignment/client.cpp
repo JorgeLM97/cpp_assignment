@@ -3,8 +3,28 @@
 #include <string.h> 
 #include <sys/socket.h> 
 #include <unistd.h> 
+#include <stdlib.h>      // rand, srand
+#include <time.h>        // time
+#include <bits/stdc++.h> //sort
+using namespace std;
 
 // Client code for the assignment
+
+
+//Function returns a pointer to a static array with 10 numbers randomly generated using rand(), with a range of rngRange beginning at rngStart
+int * RNG_array (int rngRange, int rngStart){
+
+    static int rngArray [10];
+
+    srand(time(NULL));
+
+    for (int i = 0; i != 10; i++){
+            rngArray[i] = rand() % rngRange + rngStart;
+            // printf("%d ", rngArray[i]); //print the generated array
+        }
+    return rngArray;
+
+}
 
 int main(int argc, char* argv[]) 
 { 
@@ -12,7 +32,8 @@ int main(int argc, char* argv[])
     struct sockaddr_in addrinfo; 
     char server_reply[1024]; 
     int i, temp; 
-    int number[10] = { 5, 4, 3, 8, 9, 1, 2, 0, 6 };
+    int number[10];
+    int *rnumber;
 
     // Create the client socket 
     sock = socket(AF_INET, SOCK_STREAM, 0); 
@@ -34,9 +55,25 @@ int main(int argc, char* argv[])
     } else {
         puts("Connection succesful");
     }
-  
+    
+    // generate the random array
+    rnumber = RNG_array(20, 1);
+
+    for (int i = 0; i != 10; i++)
+        printf("%d ", rnumber[i]);  //print unsorted array
+        
+    puts ("");
+
+    // sort it
+    sort(rnumber, rnumber + 10);
+
+    for (int i = 0; i != 10; i++)
+        printf("%d ", rnumber[i]); //print sorted array
+
+    puts("");
+
     // send the array
-    if (send(sock, &number, 10 * sizeof(int), 0) == -1) { 
+    if (send(sock, &rnumber, 10 * sizeof(int), 0) == -1) { 
         puts("Send failed");
     } 
   
@@ -47,11 +84,12 @@ int main(int argc, char* argv[])
 
     //print the reply array
   
-    puts("Server reply :\n"); 
+    puts("Transmission succesful: "); 
     for (i = 0; i < 5; i++) { 
-        printf("%c\n", server_reply[i]); 
+        printf("%c", server_reply[i]); 
     } 
-  
+    puts("");
+
     // close the socket 
     close(sock); 
     return 0; 
