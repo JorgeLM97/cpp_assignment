@@ -37,9 +37,3 @@ Log the pressed key and close the app
 Note: Indicate somehow inside the log file which app is the message coming from
 
 Please send us the code and the compiled apps
-
--COMMS
--LOGS
--RNG
--SORTING
--MESSAGE

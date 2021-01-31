@@ -1,0 +1,13 @@
+S:  1  4  6  8  10  11  13  15  16  17 
+S: Factorial of 1 is: 1
+S: Factorial of 4 is: 24
+S: Factorial of 6 is: 720
+S: Factorial of 8 is: 40320
+S: Factorial of 10 is: 3628800
+S: Factorial of 11 is: 39916800
+S: Factorial of 13 is: 6227020800
+
+C: Transmission succeded! Message from server: XXXXX
+C: Exit character: 
+ 
+S: Exit character: a 
